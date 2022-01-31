@@ -11,6 +11,22 @@
 
 #include "selfdrive/ui/qt/widgets/controls.h"
 
+
+// openpilot preview
+class OpenpilotView : public AbstractControl {
+  Q_OBJECT
+
+public:
+  OpenpilotView();
+
+private:
+  QPushButton btn;
+  Params params;
+  
+  void refresh();
+};
+
+
 // ********** settings window + top-level panels **********
 class SettingsWindow : public QFrame {
   Q_OBJECT

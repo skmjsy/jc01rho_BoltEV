@@ -53,6 +53,9 @@ def manager_init():
     #("INDI_Selected", "0"),
     #("LQR_Selected", "1"),
 
+    ("IsOpenpilotViewEnabled", "0"),
+
+
   ]
   if not PC:
     default_params.append(("LastUpdateTime", datetime.datetime.utcnow().isoformat().encode('utf8')))

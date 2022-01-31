@@ -182,7 +182,13 @@ static void update_state(UIState *s) {
 
     scene.light_sensor = std::clamp<float>(1.0 - (ev / max_ev), 0.0, 1.0);
   }
-  scene.started = sm["deviceState"].getDeviceState().getStarted() && scene.ignition;
+  //scene.started = sm["deviceState"].getDeviceState().getStarted() && scene.ignition;
+
+  if (!s->is_OpenpilotViewEnabled) {
+    scene.started = sm["deviceState"].getDeviceState().getStarted() && scene.ignition;
+  } else {
+    scene.started = sm["deviceState"].getDeviceState().getStarted();
+  }
 }
 
 void ui_update_params(UIState *s) {
@@ -215,6 +221,10 @@ static void update_status(UIState *s) {
     s->scene.world_objects_visible = false;
   }
   started_prev = s->scene.started;
+
+  if (s->sm->frame % (5*UI_FREQ) == 0) {
+  	s->is_OpenpilotViewEnabled = Params().getBool("IsOpenpilotViewEnabled");
+  }
 }
 
 
@@ -228,6 +238,7 @@ UIState::UIState(QObject *parent) : QObject(parent) {
   Params params;
   wide_camera = Hardware::TICI() ? params.getBool("EnableWideCamera") : false;
   has_prime = params.getBool("HasPrime");
+  is_OpenpilotViewEnabled = params.getBool("IsOpenpilotViewEnabled");
 
   // update timer
   timer = new QTimer(this);
