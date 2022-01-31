@@ -332,6 +332,16 @@ bool Device::motionTriggered(const UIState &s) {
 }
 
 void Device::updateWakefulness(const UIState &s) {
+  // bool ignition_just_turned_off = !s.scene.ignition && ignition_on;
+  // ignition_on = s.scene.ignition;
+
+  // if (ignition_just_turned_off || motionTriggered(s)) {
+  //   resetInteractiveTimout();
+  // } else if (interactive_timeout > 0 && --interactive_timeout == 0) {
+  //   emit interactiveTimout();
+  // }
+
+  // setAwake(s.scene.ignition || interactive_timeout > 0);
   bool ignition_just_turned_off = !s.scene.ignition && ignition_on;
   ignition_on = s.scene.ignition;
 
@@ -341,7 +351,7 @@ void Device::updateWakefulness(const UIState &s) {
     emit interactiveTimout();
   }
 
-  setAwake(s.scene.ignition || interactive_timeout > 0);
+  setAwake(s.scene.ignition || interactive_timeout > 0 || s.scene.started);  
 }
 
 UIState *uiState() {
