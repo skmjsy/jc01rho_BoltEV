@@ -1,3 +1,11 @@
+2022.1.31 https://github.com/jc01rho-openpilot-BoltEV2019-KoKr/openpilot/tree/0812-nda-bolt
+
+OP for EON. Oneplus 3T and LeEco Le Pro3 X727
+
+Add OnePlus 3T camera.
+Add Driving Camera preview.
+
+
 # @hanabi95님의 코드를 기반으로 하고있습니다. 항상 감사드립니다.
 
 ### 일반 사용자분들은 "release" 브랜치를 사용하세요. 버전이 올라가도 최신을 그곳에 유지하겠습니다.
